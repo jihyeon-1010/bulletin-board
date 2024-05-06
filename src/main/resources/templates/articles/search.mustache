@@ -1,0 +1,30 @@
+{{>layouts/header}}
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성일자</th>
+            <th scope="col">조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#searchArticleList}}
+            <tr>
+                <th>{{id}}</th>
+                <td><a href="/articles/{{id}}">{{title}}</a></td>
+                <td>{{user.nickname}}</td>
+                <td>{{postDate}}</td>
+                <td>{{viewCount}}</td>
+            </tr>
+        {{/searchArticleList}}
+        </tbody>
+    </table>
+
+    <a href="/articles/new"><div>글쓰기</div></a>
+</div>
+
+{{>layouts/footer}}

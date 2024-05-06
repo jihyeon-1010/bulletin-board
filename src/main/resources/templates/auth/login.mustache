@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <style>
+        :root {
+            --primary-color: #5E72E4;
+            --secondary-color: #525f7f;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .btn {
+            color: #ffffff;
+        }
+
+        .btn:hover {
+            color: #ffffff;
+        }
+
+        .custom-container {
+            max-width: 540px;
+        }
+
+        .custom-card {
+            border-radius: 1rem;
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+        }
+
+        .custom-card-header {
+            background-color: var(--secondary-color);
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .custom-card-body {
+            background-color: #ffffff;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+
+        .custom-btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .custom-btn-primary:hover {
+            background-color: #4962D9;
+            border-color: #4962D9;
+        }
+
+        .login-button {
+            display: flex;
+            justify-content: center;
+        }
+
+        .login-button img {
+            width: 50px;
+            height: auto;
+            margin: 0 10px;
+        }
+
+        .social {
+            display: flex; /* 이미지들을 가로로 정렬 */
+            justify-content: center; /* 중앙 정렬 */
+        }
+    </style>
+</head>
+<body>
+<section class="d-flex vh-100 justify-content-center align-items-center">
+    <div class="container custom-container">
+        <div class="card custom-card">
+            <div class="card-header custom-card-header text-white text-center">
+                <h2>HELLO 게시판</h2>
+            </div>
+            <div class="card-body custom-card-body p-5">
+                <!-- 로그인 폼 -->
+                <p class="text-secondary text-center mb-4">게시판을 이용하려면 로그인을 해주세요!</p>
+                <form action="/login" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">이메일</label>
+                        <input type="email" class="form-control" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">비밀번호</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-block mt-3 custom-btn-primary">로그인</button>
+                    </div>
+                </form>
+
+                <!-- 회원가입 버튼 -->
+                <button type="button" class="btn mb-3 btn-secondary btn-block mt-3" onclick="location.href='/signup'">회원가입</button>
+
+                <!-- 소셜 로그인 -->
+                <div class="social">
+                    <div class="mb-3 login-button">
+                        <a href="/oauth2/authorization/google">
+                            <img src="/img/google2.png" class="login-img">
+                        </a>
+                    </div>
+                    <div class="mb-3 login-button">
+                        <a href="/oauth2/authorization/kakao">
+                            <img src="/img/kakao2.png" class="login-img">
+                        </a>
+                    </div>
+                    <div class="mb-3 login-button">
+                        <a href="/oauth2/authorization/naver">
+                            <img src="/img/naver2.png" class="login-img">
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="/password/reset">비밀번호 재설정</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

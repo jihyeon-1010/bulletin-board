@@ -1,0 +1,46 @@
+{{>layouts/header}}
+
+<div class="container">
+    <div class="mb-3">
+        <label class="form-label">제목</label>
+        <input type="text" class="form-control" name="title" id="new-title">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">내용</label>
+        <textarea class="form-control" rows="3" name="content" id="new-content"></textarea>
+    </div>
+    <div class="form-footer">
+        <button type="submit" class="btn btn-primary" id="article-create-btn">글 등록</button>
+        <a href="/articles" class="list-link">목록</a>
+    </div>
+</div>
+
+<script>
+    {
+        const articleCreateBtn = document.querySelector("#article-create-btn");
+
+        articleCreateBtn.addEventListener("click", function() {
+            const article = {
+                title: document.querySelector("#new-title").value,
+                content: document.querySelector("#new-content").value
+            };
+
+            const url = "/articles/create"
+
+            function success() {
+                alert("게시글 등록에 성공했습니다.");
+                window.location.href = "/articles";
+            }
+
+            function fail() {
+                alert("게시글 등록에 실패했습니다.");
+                window.location.reload();
+            }
+
+            httpRequest("POST", url, article, success, fail);
+        })
+    }
+</script>
+
+
+{{>layouts/footer}}

@@ -1,0 +1,34 @@
+{{>layouts/header}}
+
+<div class="comment-container">
+    <div class="comment-title m-2">
+        <div class="card m-2" id="comments-new">
+            <div class="card-body">
+                {{#article}}
+                    <div class="article-meta">
+                        <span class="meta-item">작성자: {{user.nickname}}</span>
+                        <span class="meta-item">작성일: {{postDate}}</span>
+                        <span class="meta-item">조회수: {{viewCount}}</span>
+                    </div>
+                    <h2 class="article-title">{{article.title}}</h2>
+                    <div class="article-content">
+                        <p>{{article.content}}</p>
+                    </div>
+
+                    <div class="edit-delete-buttons">
+                        {{#isCurrentUser}}
+                            <a href="/articles/{{id}}/edit" class="btn btn-primary custom-text-color">수정</a>
+                            <a href="/articles/{{id}}/delete" class="btn btn-danger custom-text-color">삭제</a>
+                        {{/isCurrentUser}}
+                {{/article}}
+                    <div class="spacer"></div>
+                    <a href="/articles" class="btn btn-secondary">목록</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{>comments/_comments}}
+
+{{>layouts/footer}}

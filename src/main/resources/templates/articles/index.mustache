@@ -1,0 +1,61 @@
+{{>layouts/header}}
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성일자</th>
+            <th scope="col">조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#articleList}}
+            <tr>
+                <th>{{id}}</th>
+                <td><a href="/articles/{{id}}">{{title}}</a></td>
+                <td>{{user.nickname}}</td>
+                <td>{{postDate}}</td>
+                <td>{{viewCount}}</td>
+            </tr>
+        {{/articleList}}
+        </tbody>
+    </table>
+
+    <!-- 페이징 -->
+    <div class="pagination">
+        <!-- 이전 페이지 링크 -->
+        {{#hasPrevPage}}
+            <a href="/articles?page={{prevPage}}">이전</a>
+        {{/hasPrevPage}}
+
+        <!-- 페이지 번호 링크 -->
+        {{#pageNumbers}}
+            <a href="/articles?page={{.}}">{{.}}</a>
+        {{/pageNumbers}}
+
+        <!-- 다음 페이지 링크 -->
+        {{#hasNextPage}}
+            <a href="/articles?page={{nextPage}}">다음</a>
+        {{/hasNextPage}}
+    </div>
+
+    <a href="/articles/new"><div>글쓰기</div></a>
+</div>
+
+<script>
+    <!-- 파라미터로 받은 토큰이 있다면 토큰을 로컬 스토리지에 저장 -->
+    const token = searchParam('token')
+
+    if (token) {
+        localStorage.setItem("access_token", token)
+    }
+
+    function searchParam(key) {
+        return new URLSearchParams(location.search).get(key);
+    }
+</script>
+
+{{>layouts/footer}}

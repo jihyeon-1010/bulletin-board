@@ -1,0 +1,46 @@
+<div class="card m-2" id="comments-new">
+    <div class="card-body">
+        <!-- 댓글 작성 폼 -->
+        <form>
+            <!-- 댓글 입력 -->
+            <div class="mb-3">
+                <label class="form-label">댓글 입력</label>
+                <textarea type="text" class="form-control" rows="3" id="new-comment-body"></textarea>
+            </div>
+            <!--히든 인풋 -->
+            {{#article}}
+                <input type="hidden" id="new-comment-article-id" value="{{id}}">
+            {{/article}}
+            <button type="button" class="btn btn-primary" id="comment-create-btn">댓글 작성</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    {
+        const commentCreateBtn = document.querySelector("#comment-create-btn");
+
+        // 댓글 작성 버튼 클릭 시 이벤트 발생
+        commentCreateBtn.addEventListener("click", function() {
+            const comment = {
+                body: document.querySelector("#new-comment-body").value,
+                articleId: document.querySelector("#new-comment-article-id").value
+            };
+
+            const url = "/api/articles/" + comment.articleId + "/comments";
+
+            function success() {
+                alert("댓글이 등록되었습니다.");
+                window.location.reload();
+
+            }
+
+            function fail() {
+                alert("댓글 등록에 실패했습니다.");
+                window.location.reload();
+            }
+
+            httpRequest("POST", url, comment, success, fail);
+        });
+    }
+</script>

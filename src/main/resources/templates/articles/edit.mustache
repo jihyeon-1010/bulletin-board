@@ -1,0 +1,48 @@
+{{>layouts/header}}
+
+{{#article}}
+<div class="container">
+    <input id="id" type="hidden" value="{{id}}">
+    <div class="mb-3">
+        <label class="form-label">제목</label>
+        <input type="text" class="form-control" id="title" value="{{title}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">내용</label>
+        <textarea class="form-control rows=3" id="content">{{content}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" id="article-update-btn">수정완료</button>
+    <a href="/articles/{{id}}">상세 페이지</a>
+</div>
+{{/article}}
+
+
+<script>
+    {
+        const articleCreateBtn = document.querySelector("#article-update-btn");
+
+        articleCreateBtn.addEventListener("click", function() {
+            const article = {
+                id: document.querySelector("#id").value,
+                title: document.querySelector("#title").value,
+                content: document.querySelector("#content").value
+            };
+
+            const url = "/articles/update"
+
+            function success() {
+                alert("게시글 수정에 성공했습니다.");
+                window.location.href = "/articles";
+            }
+
+            function fail() {
+                alert("게시글 수정에 실패했습니다.");
+                window.location.reload();
+            }
+
+            httpRequest("POST", url, article, success, fail);
+        })
+    }
+</script>
+
+{{>layouts/footer}}
