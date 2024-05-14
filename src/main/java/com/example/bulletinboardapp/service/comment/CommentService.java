@@ -8,7 +8,6 @@ import com.example.bulletinboardapp.entity.User;
 import com.example.bulletinboardapp.repository.ArticleRepository;
 import com.example.bulletinboardapp.repository.CommentRepository;
 import com.example.bulletinboardapp.repository.UserRepository;
-import com.example.bulletinboardapp.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
